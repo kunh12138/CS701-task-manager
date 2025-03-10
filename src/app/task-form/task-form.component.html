@@ -1,0 +1,33 @@
+<!--for adding a task -->
+<form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
+  <!--Input  for task name descrip date priority-->
+  <!--fromgroup: group multiple form controls into a single object-->
+  <label for="name">Task Name:</label>
+  <input id="name" formControlName="name" placeholder="Enter task name" />
+
+  <label for="description">Description:</label>
+  <input id="description" formControlName="description" placeholder="Enter task description" />
+
+  <label for="dueDate">Due Date:</label>
+  <input id="dueDate" type="date" formControlName="dueDate" />
+
+  <label for="priority">Priority:</label>
+  <select id="priority" formControlName="priority">
+    <option value="low">Low</option>
+    <option value="medium">Medium</option>
+    <option value="high">High</option>
+  </select>
+
+  <label for="location">Location:</label>
+  <!--formControlName="location" bind to the location form control for selecting the task's location-->
+  <!--same idea for priority name date drescrip-->
+  <select id="location" formControlName="location">
+    <option value="home">Home</option>
+    <option value="school">School</option>
+    <option value="supermarket">Supermarket</option>
+  </select>
+ 
+<!--submit button-->
+  <button type="submit">Add Task</button>
+  <!--clicking the button, to submit, trigger onSubmit(), which handles saving the tak-->
+</form>

@@ -1,0 +1,61 @@
+/* task-list.component.css */
+
+ul{
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  li{
+    background-color: #fff;
+    margin-bottom: 15px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  h4{
+    margin: 0 0 10px 0;
+    font-size: 18px;
+  }
+  
+  p{
+    margin: 0;
+    color: #555;
+  }
+  
+  /* delete and save button */
+  button{
+    padding: 5px 10px;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+  
+  button:hover{
+    background-color: #c82333;}
+  
+  button.edit{
+    background-color: #28a745;}
+  
+  button.edit:hover{
+    background-color: #218838;}
+  
+  
+  /* editing tasks */
+  form{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  input, select{
+    padding: 8px;
+    font-size: 14px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+  }
+  

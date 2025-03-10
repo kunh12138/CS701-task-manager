@@ -1,0 +1,75 @@
+
+<h3>Recommended Tasks</h3>
+<!--display task list if there are recommended task-->
+<ul *ngIf="recommendedTasks.length > 0">
+  <li *ngFor="let task of recommendedTasks">
+    <!-- show name and location-->
+    <!-- show location at the title to faster understanding the task-->
+    <h4>{{ task.name }} ({{ task.location }})</h4>  
+    <p>{{ task.description }}</p>
+    <p>Due Date: {{ task.dueDate }}</p>
+    <p>Priority: {{ task.priority }}</p>
+    <p>Location: {{ task.location }}</p> 
+  </li>
+</ul>
+<!--  if no recommended tasks are available -->
+<p *ngIf="recommendedTasks.length === 0">No recommended tasks.</p>
+
+
+
+
+<h3>All Tasks</h3>
+<!-- Allow dragging to reorder tasks -->
+<!-- the top located task will be the first recommended task to consider
+if the date priority and location are same-->
+<ul cdkDropList (cdkDropListDropped)="drop($event)">
+  <li *ngFor="let task of tasks; let i = index" cdkDrag>
+    <!-- show task details when not in edit mode -->
+    <div *ngIf="editingIndex !== i">
+      <h4>{{ task.name }} ({{ task.location }})</h4>
+      <p>{{ task.description }}</p>
+      <p>Due Date: {{ task.dueDate }}</p>
+      <p>Priority: {{ task.priority }}</p>
+      <p>Location: {{ task.location }}</p> 
+      <!-- Buttons for edit and delete   -->
+      <button (click)="startEdit(i)">Edit Task</button>
+      <button (click)="deleteTask(i)">Delete Task</button>
+    </div>
+
+
+
+    <!-- editing -->
+    <div *ngIf="editingIndex === i">
+      <form [formGroup]="editForm" (ngSubmit)="saveEdit()">
+        <!--all can be editing-->
+        <label for="name">Task Name:</label>
+        <input id="name" formControlName="name" />
+
+        <label for="description">Description:</label>
+        <input id="description" formControlName="description" />
+
+        <label for="dueDate">Due Date:</label>
+        <input id="dueDate" type="date" formControlName="dueDate" />
+
+        <label for="priority">Priority:</label>
+        <select id="priority" formControlName="priority">
+          <option value="low">Low</option>
+          <option value="medium">Medium</option>
+          <option value="high">High</option>
+        </select>
+
+        <label for="location">Location:</label> 
+        <select id="location" formControlName="location">
+          
+          <option value="home">Home</option>
+          <option value="school">School</option>
+          <option value="supermarket">Supermarket</option>
+        </select>
+        <!--save button-->
+        <button type="submit">Save</button>
+        <!--cancel button-->
+        <button type="button" (click)="cancelEdit()">Cancel</button>
+      </form>
+    </div>
+  </li>
+</ul>
